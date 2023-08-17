@@ -29,7 +29,6 @@ public class AStarGraphSearch<S, A> implements SearchAlgorithm<S, A> {
     @Override
     public Optional<Node<S, A>> solve(Problem<S, A> searchProblem) {
         System.out.println("Solving (A* graph)...");
-
         
         // heuristic.apply(State) returns a Double value based on the given heuristic used.
         Comparator<Node<S, A>> nodeComparator = (a,b) -> Double.compare(heuristic.apply(a.state) + a.pathCost, heuristic.apply(b.state) + b.pathCost);
@@ -42,7 +41,7 @@ public class AStarGraphSearch<S, A> implements SearchAlgorithm<S, A> {
 
         boolean done = false;
         while (!done) {
-           // TODO
+        	throw new UnsupportedOperationException("A* Graph Search not implemented yet.");
         }
 
         return Optional.empty();

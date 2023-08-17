@@ -25,7 +25,6 @@ public class TestTouring {
 			System.out.println("Couldn't find a solution to problem.");
 		}
 		
-		
 		ImplementedSearchAlgorithms<City, DriveAction> isa2 = new ImplementedSearchAlgorithms<>();
 		Optional<Node<City, DriveAction>> opt2 = isa2.astarGraph(RomaniaHeuristics.getStraightLineDistanceHeuristic()).solve(tr);
 	
