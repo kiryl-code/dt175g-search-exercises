@@ -47,16 +47,16 @@ problems as possible, and, perhaps most importantly, experimenting with them.
 My advice is to collaborate as much as possible and build up a library together
 by sharing implementations with each other.
 
-The class `ImplementedSearchAlgorithms`, which you find in the algorithms-package, implements
-`SearchAlgorithms`. The methods `dfsTree`, `dfsGraph` and `astarGraph` have already been overrided
-there. However, only the first two mentioned method are fully implemented; `astarGraph` returns
-an instance of the `AStarGraphSearch`, which isn't functional yet.
+The class `ImplementedSearchAlgorithms`, which you find in the `algorithms` package, implements
+`SearchAlgorithms`. The methods `dfsTree`, `dfsGraph`, and `astarGraph` have already been overridden
+there. However, only the first two mentioned methods are fully implemented. The `astarGraph` method returns
+an instance of `AStarGraphSearch`, which isn't yet functional.
 
 At a minimum, you should implement `A*` yourself because it's a particularly
-important algorithm. But to minimize the risk for a frustrating experience,
-I would recommend you to first implement `Breadth-First Search (graph version)`, and then
-continue with `Uniform-Cost Search (graph version)`. This would provide a more natural
-progression to understand `A*` IMO.
+important algorithm. However, to minimize the risk of a frustrating experience,
+I would recommend starting by implementing `Breadth-First Search (graph version)`, and then
+proceeding with `Uniform-Cost Search (graph version)`. This would offer a more natural
+progression for understanding `A*`, in my opinion.
 
 Note that defining problems is as important as implementing the algorithms that
 are supposed to solve them. In the "river crossing" exercise, you will be asked
@@ -69,9 +69,10 @@ Other suggestions for problems you should try to define are:
 
 I suggest you start with N-Queens, since the sliding block puzzles can be a bit
 tricky. (Why?)
-N-queens is solvable through strategies presented in chapter 3, 4 and 5.
-I suggest you try it for each of these chapters, since it can be a quite educative experience
-to witness the time it takes to solve a 1000-Queens problem depending on the algorithm.
+
+*N-queens* is solvable using the strategies presented in chapters 3, 4, and 5.
+I recommend trying it for each of these chapters, as it can be a highly educational experience
+to observe the time it takes to solve a 1000-Queens problem based on the algorithm.
 
 Again, share definitions with each other so you have as many combinations of
 problems and algorithms as possible to experiment with.
