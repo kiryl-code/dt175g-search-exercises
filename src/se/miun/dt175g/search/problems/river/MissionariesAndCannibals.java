@@ -1,10 +1,11 @@
-package ch.rfin.ai.search.problems.cannibals;
+package se.miun.dt175g.search.problems.river;
 
 import java.util.Collection;
 import java.util.EnumSet;
 
-import ch.rfin.ai.search.AbstractSearchProblem;
-import ch.rfin.ai.search.Node;
+import se.miun.dt175g.search.AbstractSearchProblem;
+
+
 
 /**
  * A definition of the "missionaries and cannibals" version of the river
