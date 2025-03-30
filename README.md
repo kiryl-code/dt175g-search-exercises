@@ -37,15 +37,18 @@ The framework is built around these fundamental concepts:
 
 ## 🚀 Getting Started
 
-1. **Start with Tree Search**
+1. **Read the documentation**
+   - Read the documentation in the `docs` folder
+
+2. **Start with Tree Search**
    - Look at `DepthFirstTreeSearch.java` for a basic implementation
    - Try running `TestTouring.java` to see it in action
 
-2. **Explore Example Problems**
+3. **Explore Example Problems**
    - Romania Travel Problem (`problems/romania/`)
    - 8-Puzzle Problem (`problems/eightpuzzle/`)
 
-3. **Implement Your Own**
+4. **Implement Your Own**
    - Start with the simpler tree search algorithms
    - Progress to graph search variants
    - Finally tackle informed search with heuristics
