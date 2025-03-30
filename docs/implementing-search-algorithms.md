@@ -1,100 +1,100 @@
 # Implementing Search Algorithms
 
-This guide explains how to implement different search algorithms using the framework.
+Now that you understand the framework and have used the existing implementations, let's create your own search algorithms.
 
-## Learning Progression
+## Implementation Order
 
-The recommended order for implementing search algorithms is:
+Follow this progression to build your understanding:
 
-1. **Understand Tree vs Graph Search** (provided implementations)
-   - Study `DepthFirstTreeSearch.java`
-   - Compare with `DepthFirstGraphSearch.java`
+1. **Breadth-First Search**
+   - Create `BreadthFirstTreeSearch.java`
+   - Use Queue for frontier (FIFO)
+   - Learn basic search structure
+   - Add graph search capabilities in `BreadthFirstGraphSearch.java`
 
-2. **Implement Breadth-First Search**
-   - Create your own `BreadthFirstTreeSearch.java`
-   - Use Queue instead of Stack for frontier
-   - Learn basic search algorithm structure
+2. **Uniform Cost Search**
+   - Work with provided `UniformCostSearch.java` skeleton
+   - Implement path cost ordering
+   - Understand PriorityQueue usage
 
-3. **Add Graph Search Capabilities**
-   - Create `BreadthFirstGraphSearch.java`
-   - Learn about cycle detection
-   - Understand the role of the explored set
+3. **A* Search**
+   - Build on your UCS implementation
+   - Use provided heuristic code in `AStarGraphSearch.java`
+   - Learn about informed search
 
-4. **Progress to Cost-Aware Search**
-   - Work with `UniformCostSearch.java` skeleton
-   - Learn to use PriorityQueue with comparators
-   - Understand path cost considerations
+## Implementation Guide
 
-5. **Implement Informed Search**
-   - Build upon your UCS implementation
-   - Use provided heuristic integration in `AStarGraphSearch.java`
-   - Understand f(n) = g(n) + h(n)
-
-## Common Search Algorithm Patterns
-
-All search algorithms follow a general pattern:
-1. Initialize the frontier (with appropriate data structure)
-2. Add initial node
-3. Loop until solution found or frontier empty
-4. Return solution or empty
-
-## Types of Search Algorithms
-
-### 1. Uninformed Search
-These algorithms don't use any additional information about states:
-
-#### Breadth-First Search
-- Uses Queue for frontier (FIFO)
-- Explores all nodes at current depth before going deeper
-- Guarantees shortest path in unweighted graphs
+### Breadth-First Search
+Start with this structure:
 
 ```java
-// Key components needed:
-Queue<Node<S,A>> frontier = new LinkedList<>();
-// Optional for graph search:
-Set<S> explored = new HashSet<>();
+public class BreadthFirstTreeSearch<S,A> implements SearchAlgorithm<S,A> {
+    @Override
+    public Optional<Node<S,A>> solve(Problem<S,A> searchProblem) {
+        Queue<Node<S,A>> frontier = new LinkedList<>();
+        frontier.add(searchProblem.getInitialNode());
+        // TODO: Implement search loop
+    }
+}
 ```
 
-#### Uniform Cost Search
-- Uses PriorityQueue ordered by path cost g(n)
-- Explores lowest-cost nodes first
-- Guarantees optimal solution
+After implementing tree search, create a graph search version:
 
 ```java
-// Key components needed:
-Comparator<Node<S,A>> nodeComparator = // compare by pathCost
-PriorityQueue<Node<S,A>> frontier = // use nodeComparator
-Set<S> explored = // track visited states
+public class BreadthFirstGraphSearch<S,A> implements SearchAlgorithm<S,A> {
+    @Override
+    public Optional<Node<S,A>> solve(Problem<S,A> searchProblem) {
+        Queue<Node<S,A>> frontier = new LinkedList<>();
+        // Hint: You'll need a Set to keep track of explored states
+        Set<S> explored = new HashSet<>();
+        
+        frontier.add(searchProblem.getInitialNode());
+        // TODO: Implement search loop with cycle detection
+    }
+}
 ```
 
-### 2. Informed Search
-These algorithms use additional information (heuristics):
+The key difference is the addition of the explored set to prevent visiting the same state multiple times. This makes the search more efficient in graphs that contain cycles.
 
-#### A* Search
-- Extends UCS by adding heuristic estimate
-- Uses f(n) = g(n) + h(n)
-- Optimal when heuristic is admissible
+### Uniform Cost Search
+Use the provided skeleton and implement:
+1. Path cost comparator
+2. Frontier management
+3. Explored set handling
 
-```java
-// Key addition to UCS:
-Comparator<Node<S,A>> nodeComparator = (a,b) -> 
-    Double.compare(a.pathCost + heuristic.apply(a.state),
-                  b.pathCost + heuristic.apply(b.state));
-```
+### A* Search
+Use the provided skeleton with:
+1. The given heuristic comparator
+2. Same graph search structure as your UCS
+3. Same frontier management approach
 
-## Implementation Tips
+Note: A* is essentially UCS where the ordering is based on f(n) = g(n) + h(n) instead of just g(n). The comparator for this is already provided in the skeleton.
+
+## Testing Your Implementations
 
 1. **Start Simple**
-   - First implement UCS without the explored set
-   - Then add cycle detection
-   - Finally add heuristic for A*
+   - Use small Romania map instances
+   - Verify expected paths are found
+   - Compare with existing DFS implementation
 
-2. **Common Pitfalls**
-   - Forgetting to check explored states
-   - Incorrect comparator implementation
-   - Not handling frontier updates
+2. **Progress to Complex**
+   - Test with full Romania map
+   - Try 8-puzzle configurations
+   - Compare algorithm performance
 
-3. **Testing Strategy**
-   - Start with Romania travel problem
-   - Test with small, known solutions first
-   - Compare results with provided implementations
+## Common Implementation Tips
+
+1. **Frontier Management**
+   - Always check if frontier is empty
+   - Handle duplicate states correctly
+   - Use appropriate data structures
+
+2. **State Tracking**
+   - Graph search needs explored set
+   - Check states, not nodes
+   - Handle state equality correctly
+
+3. **Solution Handling**
+   - Return Optional.empty() for no solution
+   - Verify solution path is complete
+   - Check path costs are correct

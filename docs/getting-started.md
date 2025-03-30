@@ -1,41 +1,18 @@
 # Getting Started Guide
 
-This guide will help you understand how to use and extend the search framework.
+After understanding the core concepts, this guide will show you how to use the existing implementations.
 
-## Understanding the Existing Implementations
+## Available Implementations
 
-Let's examine the provided Depth-First Search implementations to understand how search algorithms work in this framework.
+The framework provides these search algorithms:
 
-### 1. Tree Search vs Graph Search
+1. **Depth-First Search**
+   - `DepthFirstTreeSearch`: Basic tree search version
+   - `DepthFirstGraphSearch`: Version with cycle detection
 
-The framework provides two DFS implementations:
-- `DepthFirstTreeSearch`: Basic tree search without cycle detection
-- `DepthFirstGraphSearch`: Enhanced version that prevents revisiting states
+## Running Your First Search
 
-Key differences:
-- Tree search uses only a frontier (Stack)
-- Graph search adds an explored set (HashSet)
-- Graph search is typically more efficient but uses more memory
-
-### 2. Analyzing the Components
-
-Let's break down the key parts of these implementations:
-
-1. **Frontier Management**
-   - Both use `Stack<Node<S,A>>` for LIFO behavior
-   - Nodes are popped from top for depth-first exploration
-
-2. **State Tracking**
-   - Tree search: Only checks frontier
-   - Graph search: Maintains explored set using `HashSet<S>`
-
-3. **Goal Testing**
-   - Both check goals using `searchProblem.isGoal(node)`
-   - Return `Optional.of(node)` when goal found
-
-### 3. Running a Search
-
-Here's how to use the existing implementations:
+Let's use the Romania travel problem:
 
 ```java
 // Create the Romania problem (Arad to Bucharest)
@@ -50,19 +27,27 @@ Optional<Node<City, DriveAction>> solution =
     searchAlgorithms.dfsGraph().solve(problem);
 ```
 
-## Exercises
+## Understanding the Output
 
-1. **Compare Implementations**
-   - Run both tree and graph search on the Romania problem
-   - Count how many states each version explores
-   - Observe differences in the solutions found
+When you run a search, you'll see:
+- States being explored
+- Solution path (if found)
+- Path cost and depth information
 
-2. **Modify the Output**
-   - Add counters to track nodes explored
-   - Print the current search depth
-   - Visualize the frontier's contents
+## Available Problems
 
-3. **Create Your Own Problem**
-   - Implement the Problem interface
-   - Define states and actions
-   - Test with existing search algorithms
+1. **Romania Travel Problem**
+   - Classic path-finding problem
+   - Cities connected by roads
+   - Different path costs
+
+2. **8-Puzzle Problem**
+   - Sliding tile puzzle
+   - More complex state space
+   - Good for testing different algorithms
+
+3. **River Crossing Problem**
+   - Logic puzzle
+   - Multiple valid solutions
+
+Next, proceed to "Implementing Search Algorithms" to create your own algorithms.

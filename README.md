@@ -39,6 +39,7 @@ The framework is built around these fundamental concepts:
 
 1. **Read the documentation**
    - Read the documentation in the `docs` folder
+   - Start with the 'core-concepts.md' file
 
 2. **Start with Tree Search**
    - Look at `DepthFirstTreeSearch.java` for a basic implementation

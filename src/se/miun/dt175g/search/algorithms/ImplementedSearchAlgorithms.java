@@ -15,6 +15,7 @@ public class ImplementedSearchAlgorithms<S, A> implements SearchAlgorithms<S, A>
 		return new DepthFirstGraphSearch<S, A>();
 	}
 
+	// TODO: Implement A* Search
 	@Override
 	public SearchAlgorithm<S, A> astarGraph(Heuristic<S> h) {
 		return new AStarGraphSearch<S, A>(h);

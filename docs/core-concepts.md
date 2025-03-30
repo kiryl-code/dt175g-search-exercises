@@ -1,6 +1,6 @@
 # Core Concepts Guide
 
-This guide explains the fundamental components of the search framework.
+This guide explains the fundamental components of the search framework. Read this first to understand the basic building blocks.
 
 ## SearchAlgorithm Interface
 
@@ -11,7 +11,6 @@ public interface SearchAlgorithm<S,A> {
     Optional<Node<S,A>> solve(Problem<S,A> searchProblem);
 }
 ```
-
 
 - `S`: The type parameter representing the State
 - `A`: The type parameter representing the Action
@@ -40,51 +39,22 @@ The `Node` class represents a point in the search space:
 
 ```java
 public class Node<S,A> {
-    public final S state;      // Current state
+    public final S state;          // Current state
     public final Node<S,A> parent; // Parent node
-    public final A action;     // Action that led here
+    public final A action;         // Action that led here
     public final double pathCost;  // Cost from start to here
-    public final int depth;    // Steps from initial state
+    public final int depth;        // Steps from initial state
 }
 ```
 
-## Understanding the Search Process
+## Search Algorithm Categories
 
-1. **Initialization**
-   - Create initial node from problem's initial state
-   - Add to frontier (the set of nodes to be explored)
-
-2. **Main Loop**
-   - Select and remove a node from frontier
-   - Test if it's a goal state
-   - If not, expand node and add children to frontier
-
-3. **Solution**
-   - When goal found, trace back through parent links
-   - Return path from initial state to goal
-
-## Example Flow
-
-```
-Initial State → [Search Algorithm] → Goal State
-      ↓                                   ↑
-    Node → Expand → Add to Frontier → Select
-            ↑                         |
-            └─────────────────────────┘
-```
-
-## Common Variations
-
-1. **Tree Search vs Graph Search**
+1. **Tree vs Graph Search**
    - Tree: May revisit states
    - Graph: Maintains explored set to avoid cycles
 
 2. **Uninformed vs Informed Search**
-   - Uninformed: No extra information (DFS, BFS)
+   - Uninformed: No extra information (DFS, BFS, UCS)
    - Informed: Uses heuristics (A*, Greedy Best-First)
 
-## Next Steps
-
-- Try implementing a simple DFS algorithm
-- Experiment with the Romania travel problem
-- Compare different search strategies
+Next, read the "Getting Started Guide" to see these concepts in action.
