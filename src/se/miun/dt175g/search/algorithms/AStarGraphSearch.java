@@ -12,9 +12,9 @@ import se.miun.dt175g.search.Problem;
 import se.miun.dt175g.search.SearchAlgorithm;
 
 /**
- * THIS CLASS IS INCOMPLETE. Anything that needs to be added can be done inside the while loop
- *
- * @author Peter Bergh
+ * A* Search implementation.
+ * Similar to Uniform Cost Search, but uses f(n) = g(n) + h(n) for node ordering,
+ * where g(n) is the path cost and h(n) is the heuristic estimate.
  */
 
 public class AStarGraphSearch<S, A> implements SearchAlgorithm<S, A> {
@@ -31,20 +31,14 @@ public class AStarGraphSearch<S, A> implements SearchAlgorithm<S, A> {
         System.out.println("Solving (A* graph)...");
         
         // heuristic.apply(State) returns a Double value based on the given heuristic used.
-        Comparator<Node<S, A>> nodeComparator = (a,b) -> Double.compare(heuristic.apply(a.state) + a.pathCost, heuristic.apply(b.state) + b.pathCost);
+        Comparator<Node<S, A>> nodeComparator = (a,b) -> 
+            Double.compare(heuristic.apply(a.state) + a.pathCost, 
+                         heuristic.apply(b.state) + b.pathCost);
         
-        PriorityQueue<Node<S, A>> frontier = new PriorityQueue<>(10, nodeComparator);
-        // A set with already explored States
-        Set<S> explored = new HashSet<>();
+        // TODO: The structure will be similar to Uniform Cost Search
+        // The main difference is that we're already using f(n) = g(n) + h(n) in the comparator
         
-        frontier.add(searchProblem.getInitialNode());
-
-        boolean done = false;
-        while (!done) {
-        	throw new UnsupportedOperationException("A* Graph Search not implemented yet.");
-        }
-
-        return Optional.empty();
+        throw new UnsupportedOperationException("A* Graph Search not implemented yet.");
     }
 
 }
