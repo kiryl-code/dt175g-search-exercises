@@ -10,25 +10,25 @@ import java.util.List;
  * <p>
  * Nodes are comparable by path cost.
  *
- * @author Christoffer Fink
+ * @author Christoffer Fink (edited by Peter Bergh)
  */
-public final class Node<S,A> implements Comparable<Node<S,A>> {
+public final class Node<S, A> implements Comparable<Node<S, A>> {
 
   /** The parent (predecessor) node - doesn't exist for the root. */
-  public final Node<S,A> parent;
+  public final Node<S, A> parent;
   public final S state;
   public final A action;
   public final double pathCost;
   public final int depth;
 
-  public static <S,A> Node<S,A> root(S state) {
+  public static <S, A> Node<S, A> root(S state) {
     if (state == null) {
       throw new IllegalArgumentException("Null states not allowed.");
     }
     return new Node<>(null, state, null, 0, 0);
   }
 
-  private Node(Node<S,A> parent, S state, A action, double pathCost, int depth) {
+  private Node(Node<S, A> parent, S state, A action, double pathCost, int depth) {
     this.parent = parent;
     this.state = state;
     this.action = action;
@@ -40,7 +40,7 @@ public final class Node<S,A> implements Comparable<Node<S,A>> {
     return parent == null;
   }
 
-  public Node<S,A> successor(S state, A action, double actionCost) {
+  public Node<S, A> successor(S state, A action, double actionCost) {
     if (state == null) {
       throw new IllegalArgumentException("Null states not allowed.");
     }
@@ -67,42 +67,21 @@ public final class Node<S,A> implements Comparable<Node<S,A>> {
   @Override
   public String toString() {
     return "Node(state: " + state + ", action: " + action + ", pathCost: "
-      + pathCost + ", parent: " + parent + ")";
+        + pathCost + ", parent: " + parent + ")";
   }
 
   @Override
   public boolean equals(Object o) {
-    if (!(o instanceof Node)) {
-      return false;
-    }
-    Node<?,?> that = (Node) o;
-    if (this.depth != that.depth) {
-      return false;
-    }
-    if (this.pathCost != that.pathCost) {
-      return false;
-    }
-    if (!this.state.equals(that.state)) {
-      return false;
-    }
-    // Only parent left to check.
-    if (this.isRoot()) {
-      return that.isRoot();
-    }
-    return this.parent.equals(that.parent);
+    return this == o;
   }
 
   @Override
   public int hashCode() {
-    int hash = state.hashCode();
-    if (action != null) {
-      hash ^= action.hashCode();
-    }
-    return hash + depth + (int) pathCost;
+    return System.identityHashCode(this);
   }
 
   @Override
-  public int compareTo(Node<S,A> other) {
+  public int compareTo(Node<S, A> other) {
     return Double.compare(this.pathCost, other.pathCost);
   }
 

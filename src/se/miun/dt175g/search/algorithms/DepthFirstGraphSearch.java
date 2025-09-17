@@ -17,8 +17,13 @@ public class DepthFirstGraphSearch<S, A> implements SearchAlgorithm<S, A> {
 
 		Stack<Node<S, A>> frontier = new Stack<>();
 		Set<S> explored = new HashSet<>();
+		Set<S> inFrontier = new HashSet<>(); // NEW
 
-		frontier.add(searchProblem.getInitialNode());
+
+		Node<S, A> initial = searchProblem.getInitialNode();
+		frontier.push(initial);
+		inFrontier.add(initial.state); // NEW
+
 
 		boolean done = false;
 		while (!done) {
@@ -28,8 +33,7 @@ public class DepthFirstGraphSearch<S, A> implements SearchAlgorithm<S, A> {
 			} else {
 
 				Node<S, A> next = frontier.pop();
-
-				// System.out.println(next.state.toString());
+            	inFrontier.remove(next.state); // NEW
 
 				if (searchProblem.isGoal(next)) {
 					return Optional.of(next);
@@ -38,8 +42,9 @@ public class DepthFirstGraphSearch<S, A> implements SearchAlgorithm<S, A> {
 				explored.add(next.state);
 
 				for (Node<S, A> child : searchProblem.successorsOf(next)) {
-					if (!explored.contains(child.state) && !frontier.contains(child)) {
+					if (!explored.contains(child.state) && !inFrontier.contains(child.state)) {
 						frontier.add(child);
+						inFrontier.add(child.state);
 					}
 				}
 			}

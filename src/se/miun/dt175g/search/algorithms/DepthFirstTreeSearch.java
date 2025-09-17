@@ -1,6 +1,5 @@
 package se.miun.dt175g.search.algorithms;
 
-
 import java.util.Optional;
 import java.util.Stack;
 import se.miun.dt175g.search.Node;
@@ -33,10 +32,16 @@ public class DepthFirstTreeSearch<S, A> implements SearchAlgorithm<S, A> {
 					return Optional.of(next);
 				}
 
+				/*
+				 * Possible optional thing:
+				 * An "explored" set is not relevant for tree search. However, we can add the
+				 * "inFrontier" set that is in DepthFirstGraphSearch if we want, to avoid
+				 * possible duplicates. If you want to avoid it going directly back to the
+				 * parent (as we will see examples of in our lecture) then add a check that
+				 * prevents the parent from being added
+				 */
 				for (Node<S, A> child : searchProblem.successorsOf(next)) {
-					if (!frontier.contains(child)) {
-						frontier.add(child);
-					}
+					frontier.add(child);
 				}
 			}
 		}
