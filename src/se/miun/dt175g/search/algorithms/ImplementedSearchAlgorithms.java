@@ -21,4 +21,9 @@ public class ImplementedSearchAlgorithms<S, A> implements SearchAlgorithms<S, A>
 		return new AStarGraphSearch<S, A>(h);
 	}
 
+	@Override
+	public SearchAlgorithm<S,A> bfsGraph() {
+		return new BreadthFirstGraphSearch<S, A>();
+	}
+
 }
